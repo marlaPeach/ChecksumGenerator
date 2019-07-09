@@ -1,0 +1,24 @@
+*
+**This file will help to explain the layout necessary for the csv 
+**to be processed by the checksum generator program.
+*
+*COLUMN/FIELD SPECIFICS*
+-The program is designed to take in a csv file with any amount of 
+-fields (columns), as long as the path variable field is in the 
+-second column. If the path variable is not in the second column, the 
+-program will encounter a critical error when generating checksums, 
+-display an error message and close.
+*
+*HEADERS*
+-The program will take in the first row of the csv file as headers
+-for the output csv. 
+-It cannot distinguish between a header and the first row of input, 
+-so please be sure to input headers into your csv before processing the file.
+*
+*HOW DATA IS INPUT/OUTPUT*
+-With each file, the checksum will be created and appended to the 
+-end of the row, then printed into a new csv. Each row will contain 
+-any previous information in the file with this checksum added as a new field.
+*
+*
+*
