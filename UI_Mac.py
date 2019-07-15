@@ -2,16 +2,18 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-import ChecksumGenerator
+import GeneratorMac
 import time
 import os
+import sys
+import platform
 
 class Window(Frame):
 
 	def __init__(self, master=None):
 		self.master = master
 		self.master.title("Checksum Manifest Creator")
-		# Created file and edit menus.
+		# Create file and edit menus.
 		menu = Menu(self.master)
 		self.master.config(menu=menu)
 		file = Menu(menu, tearoff=False)
@@ -36,18 +38,19 @@ class Window(Frame):
 		#User input area. Labels and entries.
 		Label(self.master, text="Input File Path:", font=('Times', 12)).grid(row=4, column=1, padx=25, pady=5)
 		self.input = Entry(self.master, width=70)
-		self.input.insert(END, 'C:\\Users\\schmidttl\\Documents\\ChecksumProject\\testfile.csv')
+		#self.input.insert(END, 'C:\\Users\\schmidttl\\Documents\\ChecksumProject\\testfile.csv')
 		self.input.grid(row=4, column=2, columnspan=2, padx=10, pady=5)
 		Label(self.master, text="Output File Path:", font=('Times', 12)).grid(row=5, column=1, padx=25, pady=5)
 		self.output = Entry(self.master, width=70)
-		self.output.insert(END, 'C:\\Users\\schmidttl\\Documents\\ChecksumProject\\GeneratedFiles\\newfile.csv')
+		#self.output.insert(END, 'C:\\Users\\schmidttl\\Documents\\ChecksumProject\\GeneratedFiles\\newfile.csv')
 		self.output.grid(row=5, column=2, columnspan=2, padx=10, pady=5)
 		Label(self.master, text="Log File Path:", font=('Times', 12)).grid(row=7, column=1, padx=25, pady=5)
 		self.log = Entry(self.master, width=70)
-		self.log.insert(END, 'C:\\Users\\schmidttl\\Documents\\ChecksumProject\\ProgramLogs\\manifestlog_1')
+		#self.log.insert(END, 'C:\\Users\\schmidttl\\Documents\\ChecksumProject\\ProgramLogs\\manifestlog_1')
 		self.log.grid(row=7, column=2, columnspan=2, padx=10, pady=5)
 
 		#Display message for ease of use.
+
 		message_text = 'Please note that when entering input, output, and log paths you will need to include file names. Please be sure that file names for output and log are not already in use within that directory, or those files may be overwritten. See Help files for further details on program specifics.'
 		Label(self.master, text=message_text, bg='alice blue', font=('Times', 12), wraplength=500, bd=4, relief=SUNKEN).grid(row=8, column=0, columnspan=4, padx=20, pady=10, ipadx=10, ipady=10, sticky=W+E+N+S)
 
@@ -64,6 +67,8 @@ class Window(Frame):
 		quit_button = Button(self.master, text="Quit", command=self.close_window)
 		quit_button.grid(row=10, column=3, sticky=W+E+N+S, padx=25, pady=10)
 
+		Label(self.master, text='Mac UI').grid(row=11, column=1, columnspan=4, sticky=W+E+N+S, padx=25, pady=10)
+		
 	#Clear entry boxes of path values.
 	def clear_fields(self):
 		self.input.delete(0, 'end')
@@ -73,7 +78,7 @@ class Window(Frame):
 	#Use values and checksum generator to process files.
 	def process_transaction(self):
 		display_running(self)
-		generator = ChecksumGenerator.ChecksumGenerator()
+		generator = GeneratorMac.ChecksumGenerator()
 		generator.set_input(self.input.get())
 		generator.set_output(self.output.get())
 		generator.set_log(self.log.get())
@@ -108,7 +113,6 @@ class Window(Frame):
 #Displays message that program is running properly.
 def display_running(self):
 	messagebox.showinfo('Utility Message', 'Checksum utility has begun working. Please wait.')
-
 
 
 root = Tk()
