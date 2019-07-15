@@ -1,0 +1,6 @@
+Notes To Self About Running the Program on Mac:
+
+*Program will not show text correctly in Mojave Dark Mode. Need to switch to light. Make a note of this on screen and in documentation.
+*User will also need to be sure that Python 3 is installed and running rather than Python 2 or program will not work.
+*Include Homebrew Python3 installation in documentation.
+*Look into Python.org installation method for Dark Mode fix.
