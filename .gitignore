@@ -3,3 +3,4 @@ inputs.txt
 .idea/
 .idea/workspace.xml
 .idea/ChecksumGenerator.iml
+.DS_Store
