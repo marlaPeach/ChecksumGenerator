@@ -38,15 +38,12 @@ class Window(Frame):
 		#User input area. Labels and entries.
 		Label(self.master, text="Input File Path:", font=('Times', 12)).grid(row=4, column=1, padx=25, pady=5)
 		self.input = Entry(self.master, width=70)
-		self.input.insert(END, 'C:\\Users\\schmidttl\\Documents\\ChecksumProject\\testfile.csv')
 		self.input.grid(row=4, column=2, columnspan=2, padx=10, pady=5)
 		Label(self.master, text="Output File Path:", font=('Times', 12)).grid(row=5, column=1, padx=25, pady=5)
 		self.output = Entry(self.master, width=70)
-		self.output.insert(END, 'C:\\Users\\schmidttl\\Documents\\ChecksumProject\\GeneratedFiles\\newfile.csv')
 		self.output.grid(row=5, column=2, columnspan=2, padx=10, pady=5)
 		Label(self.master, text="Log File Path:", font=('Times', 12)).grid(row=7, column=1, padx=25, pady=5)
 		self.log = Entry(self.master, width=70)
-		self.log.insert(END, 'C:\\Users\\schmidttl\\Documents\\ChecksumProject\\ProgramLogs\\manifestlog_1')
 		self.log.grid(row=7, column=2, columnspan=2, padx=10, pady=5)
 
 		#Display message for ease of use.
@@ -67,8 +64,6 @@ class Window(Frame):
 		quit_button = Button(self.master, text="Quit", command=self.close_window)
 		quit_button.grid(row=10, column=3, sticky=W+E+N+S, padx=25, pady=10)
 
-		Label(self.master, text='Windows UI').grid(row=11, column=1, columnspan=4, sticky=W+E+N+S, padx=25, pady=10)
-
 	#Clear entry boxes of path values.
 	def clear_fields(self):
 		self.input.delete(0, 'end')
@@ -78,7 +73,7 @@ class Window(Frame):
 	#Use values and checksum generator to process files.
 	def process_transaction(self):
 		display_running(self)
-		generator = ChecksumGenerator.ChecksumGenerator()
+		generator = GeneratorWin.ChecksumGenerator()
 		generator.set_input(self.input.get())
 		generator.set_output(self.output.get())
 		generator.set_log(self.log.get())

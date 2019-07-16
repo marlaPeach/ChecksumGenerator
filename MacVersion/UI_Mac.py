@@ -39,15 +39,12 @@ class Window(Frame):
 		#User input area. Labels and entries.
 		Label(self.master, text="Input File Path:", font=('Times', 12)).grid(row=4, column=1, padx=25, pady=5)
 		self.input = Entry(self.master, width=70)
-		self.input.insert(END, '/Users/tiffanyschmidt/Documents/testfile.csv')
 		self.input.grid(row=4, column=2, columnspan=2, padx=10, pady=5)
 		Label(self.master, text="Output File Path:", font=('Times', 12)).grid(row=5, column=1, padx=25, pady=5)
 		self.output = Entry(self.master, width=70)
-		self.output.insert(END, '/Users/tiffanyschmidt/Documents/newfile.csv')
 		self.output.grid(row=5, column=2, columnspan=2, padx=10, pady=5)
 		Label(self.master, text="Log File Path:", font=('Times', 12)).grid(row=7, column=1, padx=25, pady=5)
 		self.log = Entry(self.master, width=70)
-		self.log.insert(END, '/Users/tiffanyschmidt/Documents/logfile.txt')
 		self.log.grid(row=7, column=2, columnspan=2, padx=10, pady=5)
 
 		#Display message for ease of use.
