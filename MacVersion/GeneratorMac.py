@@ -18,7 +18,7 @@ log_path = ''
 rowlib = []
 header_lib = []
 file_counter = 0
-ENCODING = 'ascii'
+ENCODING = 'utf-8-sig'
 BLOCK_SIZE = 16384
 
 class ChecksumGenerator():
@@ -26,7 +26,7 @@ class ChecksumGenerator():
     # ingest csv and output information and checksums to new csv.
     def csv_io(self):
         try:
-            with open(self.in_path, 'r+', newline='') as f:
+            with open(self.in_path,'r+', newline='') as f:
                 new_reader = csv.reader(f)
                 headers_input(new_reader)
                 write_headers(self.out_path, header_lib)
@@ -36,15 +36,14 @@ class ChecksumGenerator():
                     line = row[1].strip()
                     line.strip('\n')
                     line.strip("'")
-                    newline = line.replace('\\', '\\\\')
                     if(line == ''):
                         writeto_log(file_counter, 'Cannot find file. Blank path value.', self.log_path)
                         rowlib = create_row(row, '-Error-')
-                    elif(line[-1]=='\\'):
+                    elif(line[-1]=='/'):
                         writeto_log(file_counter, 'This is a directory path, not a file path. ', self.log_path)
                         rowlib = create_row(row, '-Error-')
                     else:
-                        checksum = create_checksum(newline)
+                        checksum = create_checksum(line)
                         rowlib = create_row(row, checksum)
                     writeto_csv(self.out_path, rowlib)
                     del rowlib[:]
@@ -101,7 +100,7 @@ def create_row(row, checksum):
 #create csv with path, if UMO, and calculated checksum
 def writeto_csv(fname, library):
     try:
-        with open(fname, 'a', encoding=ENCODING, newline='\n') as out:
+        with open(fname, 'a', newline='\n') as out:
             writer = csv.writer(out, dialect='excel')
             writer.writerow(library)
     except(IOError):
